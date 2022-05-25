@@ -31,7 +31,7 @@ $admin_pass = $stmt->fetch();
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    !password_verify($_SERVER['PHP_AUTH_PW'], $admin_pass['pass'])){
+    $_SERVER["PHP_AUTH_PW"]!="admin"){
       header('HTTP/1.1 401 Unanthorized');
       header('WWW-Authenticate: Basic realm="My site"');
       print('<h1>401 Требуется авторизация</h1>');
