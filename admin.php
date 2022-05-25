@@ -27,7 +27,7 @@ $stmt = $db->prepare("SELECT * FROM admin WHERE login = ?");
         $login
       ));
 $admin_pass = $stmt->fetch();
-
+//валидация входа
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
@@ -39,7 +39,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.<br>');
-
+//функция показа таблиц из бд
 function show_tables($db){
   $sql = 'SELECT  application6.*, 
                     SuperDef.name as power,
@@ -85,6 +85,10 @@ function show_tables($db){
     }print('</tr></table>');
     print('<br><a href=login.php?do=logout> Выход</a><br>');
 }
+
+
+
+// функция вызова формы, если нажали кнопку add
 function form($db){
   ?>
   <label for='name'>Имя</label>
@@ -172,6 +176,9 @@ function errors(){
       return false;
     }
 }
+
+
+//функция удаления пользователя delete
 function delete_user($db, $del){
   try{
     $sth = $db->prepare("DELETE FROM application6 WHERE id = ?");
@@ -186,6 +193,8 @@ function delete_user($db, $del){
     exit();
   }
 }
+
+//фукнция добавления пользователя
 function add_user($db){
   $sth = $db->prepare("SELECT login FROM users6");
   $sth->execute();
@@ -235,6 +244,8 @@ function add_user($db){
     exit();
   }
 }
+
+//функция редактирования пользователя
 function edit_user($db, $edit){
   try {
     $stmt = $db->prepare('SELECT * FROM application6 WHERE id=?');
