@@ -88,7 +88,7 @@ function show_tables($db){
 
 
 
-// функция вызова формы, если нажали кнопку add
+// функция вызова формы, для add или edit
 function form($db){
   ?>
   <label for='name'>Имя</label>
